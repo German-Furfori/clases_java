@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>clase-seis</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Setup -->
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target> <!-- File -> Project Structure -> Y veo la versión de Java que estoy corriendo -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>15</java.version>
+        <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+
+        <!-- Dependencies -->
+        <lombok.version>1.18.20</lombok.version>
+        <modelmapper.version>3.1.0</modelmapper.version> <!-- Ésta etiqueta -->
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
+
+        <!-- Model Mapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId> <!-- Nos trae la clase ModelMapper -->
+            <artifactId>modelmapper</artifactId>
+            <version>3.1.0</version> <!-- Esa variable entre llaves es la etiqueta de arriba -->
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.test.Main</mainClass> <!-- Acá pongo la ruta al Main, la clase principal -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Comandos para compilar que usamos: mvn clean install ; mvn clean package (se me creó el archivo clase-seis-1.0-SNAPSHOT.jar) -->
+    <!-- mvn clean install -DskipTest, este comando se saltea las pruebas -->
+
+    <!--
+        mvn clean Borra todos los .class y .jar generados.
+        mvn compile Compila el proyecto.
+        mvn package Genera el jar.
+        mvn install LLeva el jar a nuestro repositorio local de jars. Queda "visible" para otros proyectos maven en nuestro ordenador.
+        mvn deploy Lleva el jar a nuestro servidor de jars. Queda "visible" para otros proyectos maven en otros ordenadores. Este comando necesita que a maven se le haya indicado dónde está dicho servidor de jars.
+        mvn javadoc:javadoc Genera la documentación javadoc de nuestro proyecto.
+        mvn site Genera documentación html del proyecto. Por supuesto, necesitamos haber escrito en determinados ficheros el contenido de esa documentación.
+     -->
+
+</project>
